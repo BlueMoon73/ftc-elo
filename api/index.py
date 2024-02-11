@@ -1,4 +1,6 @@
 from flask import Flask
+import elo 
+import main
 
 app = Flask(__name__)
 
