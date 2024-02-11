@@ -1,5 +1,5 @@
 from flask import Flask
-import elo 
+import Elo 
 import main
 
 app = Flask(__name__)
