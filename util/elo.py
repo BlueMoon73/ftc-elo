@@ -11,7 +11,7 @@ def calcExpectedPlayerScore(playerRating, opposingTeam1Rating, opposingTeam2Rati
     opposingTeam1Score = 1 / (1+math.pow(10,(opposingTeam1Rating- playerRating)/ratingDiff))
     opposingTeam2Score = 1 / (1+math.pow(10,(opposingTeam2Rating- playerRating)/ratingDiff))
 
-    return (opposingTeam1Score + opposingTeam1Score) / 2
+    return (opposingTeam1Score + opposingTeam2Score) / 2
 
 
 def calcExpectedTeamScore (expectedPlayer1Score, expectedPlayer2Score):
