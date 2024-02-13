@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     val = elo.ratingDiff
-    return val
+    return str(val)
 
 @app.route('/about')
 def about():
