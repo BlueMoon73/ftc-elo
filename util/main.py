@@ -2,7 +2,7 @@
 import requests
 import json
 from string import Template
-import elo
+from util import elo
 from datetime import datetime
 
 print(elo.ratingDiff)
