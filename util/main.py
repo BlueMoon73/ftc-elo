@@ -207,13 +207,12 @@ def printDict(dict):
 def predictMatches():
     eloSum = 0
 
-
-teamNum = 5070
-iterations = 1
-for i in range(iterations):
+def getAvgElo(teamNum, iterations=1):
+  avgElo = 0;
+  for i in range(iterations):
     updatedTeamSet = calcEloFromAllEvents(teamNum)
-    teamElo, rankedTeamDict = teamRanking(teamNum, updatedTeamSet, True)
-    eloSum += teamElo
+    teamElo, rankedTeamDict = teamRanking(teamNum, updatedTeamSet, False)
+    avgElo += teamElo
+  avgElo /= iterations
 
-eloSum /= iterations
-print("avg elo", eloSum)
+  return avgElo
