@@ -18,5 +18,5 @@ def about():
 @app.route('/search/<query>')
 def search(query):
     # Process the query parameter here
-   rating = main.getAvgElo(int({query}))
-   return str(int({query})) + " rating: " + str(rating)
+   rating = main.getAvgElo(int(query))
+   return str(int(query)) + " rating: " + str(rating)
