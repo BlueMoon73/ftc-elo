@@ -13,3 +13,9 @@ def home():
 @app.route('/about')
 def about():
     return 'About'
+
+
+@app.route('/search/<query>')
+def search(query):
+    # Process the query parameter here
+   return str(int({query})) + " rating: " + str(rating)
