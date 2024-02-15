@@ -231,11 +231,11 @@ def predictMatches (team1, team2, team3, team4):
             teamList.extend([y])
             teamNumbers.append(y.teamNumber)
 
-    print(elo.predictMatch(
+    return elo.predictMatch(
               teamList[getPlayerIndex(teamList, team1)],
               teamList[getPlayerIndex(teamList, team2)],
               teamList[getPlayerIndex(teamList, team3)],
-              teamList[getPlayerIndex(teamList, team4)]))
+              teamList[getPlayerIndex(teamList, team4)])
 
 
 

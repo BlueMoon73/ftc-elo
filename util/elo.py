@@ -44,6 +44,8 @@ def predictMatch(player1, player2, player3, player4):
     # expected team scores
     t1Expected = calcExpectedTeamScore(p1Expected, p2Expected)
     t2Expected = calcExpectedTeamScore(p3Expected, p4Expected)
+
+    return [p1Expected, p2Expected, p3Expected, p4Expected,  t1Expected, t2Expected]
 def matchup(player1, player2, player3, player4, team1Score, team2Score): 
     player1.numGames = player1.numGames + 1; 
     player1.calcK()
