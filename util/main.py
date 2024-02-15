@@ -205,7 +205,7 @@ def printDict(dict):
         place = place + 1
 
 
-def predictMatches (team1, team2, team3, team4):
+def predictMatch (team1, team2, team3, team4):
     team1List = calcEloFromAllEvents(team1)
     team2List = calcEloFromAllEvents(team2)
     team3List = calcEloFromAllEvents(team3)

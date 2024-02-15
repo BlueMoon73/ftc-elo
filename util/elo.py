@@ -35,7 +35,15 @@ class player:
     def calcNewRating (self, oldRating, actualScore, expectedTeamScore, pointFactor):
         newRating = oldRating + (self.k * pointFactor) * (actualScore - expectedTeamScore) 
         self.eloRating = newRating
+def predictMatch(player1, player2, player3, player4):
+    p1Expected =  calcExpectedPlayerScore(player1.eloRating, player3.eloRating, player4.eloRating)
+    p2Expected =  calcExpectedPlayerScore(player2.eloRating, player3.eloRating, player4.eloRating)
+    p3Expected = calcExpectedPlayerScore(player3.eloRating, player1.eloRating, player2.eloRating)
+    p4Expected = calcExpectedPlayerScore(player4.eloRating, player1.eloRating, player2.eloRating)
 
+    # expected team scores
+    t1Expected = calcExpectedTeamScore(p1Expected, p2Expected)
+    t2Expected = calcExpectedTeamScore(p3Expected, p4Expected)
 def matchup(player1, player2, player3, player4, team1Score, team2Score): 
     player1.numGames = player1.numGames + 1; 
     player1.calcK()
