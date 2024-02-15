@@ -25,7 +25,11 @@ def elo(teamnum):
 def matchup(team1, team2, team3, team4):
     # Process the query parameter here
     predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
-    return str(predictions[-2]) ,  str(predictions[-1])
+
+    ret = str(team1) + " and " + str(team2) + " (" + str(predictions[-2] * 100)
+    ret += " vs. "
+    ret += str(team2) + " and " + str(team3) + " (" + str(predictions[-1] * 100)
+    return ret
    # return (str(int(team1)) + " and "  + str(int(team2)) + " ("+  predictions[-2] + ")"
    #         + "vs. " + str(int(team3)) + " and "  + str(int(team4)) + " ("+  predictions[-1] + ")")
 
