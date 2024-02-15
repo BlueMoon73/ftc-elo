@@ -1,7 +1,7 @@
 from flask import Flask
 from util import elo
 from util import main
-
+from flask import render_template
 app = Flask(__name__)
 
 
@@ -11,10 +11,11 @@ def home():
     return str(22012) + " rating: " + str(rating)
 
 
-@app.route('/about')
-def about():
-    return 'About'
 
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/elo/<teamnum>')
 def elo(teamnum):
