@@ -5,6 +5,7 @@ from string import Template
 from util import elo
 from datetime import datetime
 
+
 print(elo.ratingDiff)
 
 url = "https://api.ftcscout.org/graphql"
@@ -204,8 +205,40 @@ def printDict(dict):
         place = place + 1
 
 
-def predictMatches():
-    eloSum = 0
+def predictMatches (team1, team2, team3, team4):
+    team1List = calcEloFromAllEvents(team1)
+    team2List = calcEloFromAllEvents(team2)
+    team3List = calcEloFromAllEvents(team3)
+    team4List = calcEloFromAllEvents(team4)
+    # Creating a copy
+    teamList = list(team1List)
+    print(len(teamList))
+
+    # Using extend() method
+    teamNumbers = [t.teamNumber for t in teamList]
+    for y in team2List:
+        if y.teamNumber not in teamNumbers:
+            teamList.extend([y])
+            teamNumbers.append(y.teamNumber)
+
+    for y in team3List:
+        if y.teamNumber not in teamNumbers:
+            teamList.extend([y])
+            teamNumbers.append(y.teamNumber)
+
+    for y in team4List:
+        if y.teamNumber not in teamNumbers:
+            teamList.extend([y])
+            teamNumbers.append(y.teamNumber)
+
+    print(elo.predictMatch(
+              teamList[getPlayerIndex(teamList, team1)],
+              teamList[getPlayerIndex(teamList, team2)],
+              teamList[getPlayerIndex(teamList, team3)],
+              teamList[getPlayerIndex(teamList, team4)]))
+
+
+
 
 def getAvgElo(teamNum, iterations=1):
   avgElo = 0;
@@ -216,3 +249,5 @@ def getAvgElo(teamNum, iterations=1):
   avgElo /= iterations
 
   return avgElo
+
+
