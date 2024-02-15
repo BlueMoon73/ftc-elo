@@ -16,13 +16,13 @@ def about():
 
 
 @app.route('/elo/<teamnum>')
-def search(teamnum):
+def elo(teamnum):
     # Process the query parameter here
    rating = main.getAvgElo(int(teamnum))
    return str(int(teamnum)) + " rating: " + str(rating)
 
 @app.route('/matchup/<team1>&<team2>/<team3>&<team4>')
-def search(team1, team2, team3, team4):
+def matchup(team1, team2, team3, team4):
     # Process the query parameter here
    predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
    return (str(int(team1)) + " and "  + str(int(team2)) + " ("+  predictions[-2] + ")"
