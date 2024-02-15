@@ -15,7 +15,7 @@ def home():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('page.html')
 
 @app.route('/elo/<teamnum>')
 def elo(teamnum):
