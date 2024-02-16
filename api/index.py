@@ -2,13 +2,14 @@ from flask import Flask
 from util import elo
 from util import main
 from flask import render_template
+
 app = Flask(__name__)
 
 
 
 @app.route('/')
 def home():
-    return render_template('util/page.html')
+    return render_template('page.html')
 
 @app.route('/elo/<teamnum>')
 def elo(teamnum):
