@@ -13,6 +13,10 @@ def home():
 def elo(teamnum):
     rating = main.getAvgElo(int(teamnum))
     return str(int(teamnum)) + " rating: " + str(rating)
+@app.route('/elo/<teamnum>')
+def elo(teamnum):
+    rating = main.getAvgElo(int(teamnum))
+    return str(int(teamnum)) + " rating: " + str(rating)
 
 @app.route('/matchup/?team1=<team1>&team2=<team2>&team3=<team3>&team4=<team4>')
 def matchup(team1, team2, team3, team4):
