@@ -35,8 +35,8 @@ def matchup(team1, team2, team3, team4):
     return ret
 
 
-@app.route('/matchup?team1=<team1>&team2=<team2>&team3=<team3>&team4=<team4>', methods=['GET'])
-def matchup2(team1, team2, team3, team4):
+@app.route('/matchup', methods=['GET'])
+def matchup2():
     team1 = request.args.get('team1')
     team2 = request.args.get('team2')
     team3 = request.args.get('team3')
