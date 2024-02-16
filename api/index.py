@@ -41,7 +41,7 @@ def matchup2():
     team2 = request.args.get('team2')
     team3 = request.args.get('team3')
     team4 = request.args.get('team4')
-    if team1 or team3 is None:
+    if team1 is None or team3 is None:
         return "teamnumber parameter is missing", 400
     if team2 is None:
         team2 = team1
