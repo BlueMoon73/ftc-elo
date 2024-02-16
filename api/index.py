@@ -9,10 +9,10 @@ app = Flask(__name__)
 def home():
     return render_template('page.html')
 
-@app.route('/elo?teamnumber=<teamnum>')
-def elo(teamnum):
-    rating = main.getAvgElo(int(teamnum))
-    return str(int(teamnum)) + " rating: " + str(rating)
+@app.route('/elo?teamnumber=<teamnumber>')
+def elo(teamnumber):
+    rating = main.getAvgElo(int(teamnumber))
+    return str(int(teamnumber)) + " rating: " + str(rating)
 @app.route('/elo/<teamnum>')
 def elo2(teamnum):
     rating = main.getAvgElo(int(teamnum))
