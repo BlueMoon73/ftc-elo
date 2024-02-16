@@ -14,7 +14,7 @@ def elo(teamnum):
     rating = main.getAvgElo(int(teamnum))
     return str(int(teamnum)) + " rating: " + str(rating)
 @app.route('/elo/<teamnum>')
-def elo(teamnum):
+def elo2(teamnum):
     rating = main.getAvgElo(int(teamnum))
     return str(int(teamnum)) + " rating: " + str(rating)
 
