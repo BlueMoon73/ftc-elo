@@ -5,13 +5,6 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route('/')
-def home():
-    rating = main.getAvgElo(22012)
-    return str(22012) + " rating: " + str(rating)
-
-
-
 
 @app.route('/')
 def home():
