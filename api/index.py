@@ -1,7 +1,6 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from util import elo
 from util import main
-from flask import render_template
 
 app = Flask(__name__)
 
@@ -9,8 +8,11 @@ app = Flask(__name__)
 def home():
     return render_template('page.html')
 
-@app.route('/elo?teamnumber=<teamnumber>')
-def elo(teamnumber):
+@app.route('/elo', methods=['GET'])
+def elo():
+    teamnumber = request.args.get('teamnumber')
+    if teamnumber is None:
+        return "teamnumber parameter is missing", 400
     rating = main.getAvgElo(int(teamnumber))
     return str(int(teamnumber)) + " rating: " + str(rating)
 @app.route('/elo/<teamnum>')
