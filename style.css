@@ -1,46 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  --background-color: #080808;
+  --form-bg-color: #121212;
+  --main-accent: #03a9f4;
+  --button-bg-color: #09314b;
+  --red-color: #e78282;
+  --white-color: #ccc;
+}
+
 body {
-  font-family: 'Montserrat', sans-serif; /* Techy font */
-  background-color: #080808; /* Darker background */
-  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background-color);
+  color: var(--white-color);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background-color: var(--form-bg-color);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  text-align: center;
-  color: #03a9f4; /* Bright blue accent */
+  color: var(--main-accent);
+}
+
+main {
+  width: 80%;
+  margin: auto;
 }
 
 form {
-  width: 50%;
-  margin: auto;
-  background-color: #121212; /* Dark background for form */
+  width: 100%;
+  background-color: var(--form-bg-color);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 50px auto;
+}
+
+h1 {
+  color: var(--main-accent);
+
+  margin-bottom: 10px;
+    text-align: left;
+
+}
+
+p {
+  color: var(--white-color);
+  margin-bottom: 20px;
+  font-size: 17px;
+      text-align: left;
+
 }
 
 label {
   display: block;
   margin-bottom: 10px;
-  color: #03a9f4; /* Bright blue accent */
+  color: var(--main-accent);
 }
 
 input {
-  width: calc(100% - 12px);
+  width: calc(100% - 22px);
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #03a9f4; /* Bright blue accent */
+  border: 1px solid var(--main-accent);
   border-radius: 5px;
-  background-color: #121212; /* Dark background for input */
+  background-color: var(--form-bg-color);
   color: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 input[type="submit"] {
-  background-color: #03a9f4; /* Bright blue accent for buttons */
+  width: calc(100% - 2px);
+  border: var(--button-bg-color);
+  background-color: var(--main-accent);
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s; /* Smooth transition */
+  transition: background-color 0.3s;
 }
 
 input[type="submit"]:hover {
-  background-color: #0288d1; /* Slightly darker blue on hover */
+  background-color: var(--button-bg-color);
+}
+
+footer {
+  text-align: center;
+  background-color: var(--form-bg-color);
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.combined-form {
+  width: 100%;
+  margin: auto;
+  background-color: var(--form-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.alliance-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.blue-form,
+.red-form {
+  width: 45%;
+  margin: 20px 2.5%;
+  text-align: center;
+}
+
+.matchup-button {
+  width: 80%;
+  background-color: var(--main-accent);
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+}
+
+.matchup-button:hover {
+  background-color: var(--main-accent);
+}
+
+
+.blue-input {
+  border-color: var(--main-accent); /* Blue color for border */
+}
+
+.red-input {
+  border-color: var(--red-color); /* Red color for border */
+}
+.overall-heading {
+  text-align: center;
+  color: var(--main-accent);
+  margin: 20px 0;
+}
+.blue-form h2 {
+  color: var(--main-accent); /* Blue color for text */
+}
+
+.red-form h2 {
+  color: var(--red-color); /* Red color for text */
+}
+.blue-form label {
+  color: var(--main-accent); /* Blue color for text */
+  font-weight: bolder;
+
+}
+
+.red-form label {
+  color: var(--red-color); /* Red color for text */
+    font-weight: bolder;
+
+}
+footer {
+  text-align: center;
+  background-color: var(--form-bg-color);
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+    margin-top: 10px; /* Add more margin to create space between text */
+
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-text {
+  color: var(--white-color);
+  margin: 3px; /* Remove default margin */
+}
+
+.footer-link {
+  color: var(--main-accent);
+    margin: 3px; /* Remove default margin */
+
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
 }

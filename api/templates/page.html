@@ -1,33 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FTC Team Elo Ratings</title>
   <link rel="stylesheet" href="../../style.css">
 </head>
+
 <body>
-  <h1>FTC Team Elo Ratings</h1>
+  <header>
+    <h1>FTC Team Elo Ratings</h1>
+  </header>
 
-  <form action="/elo" method="get">
-    <label for="teamnum">Team Number:</label>
-    <input type="text" id="teamnum" name="teamnumber">
-    <input type="submit" value="Get Elo">
-  </form>
+  <main>
+    <form action="/elo" method="get">
+      <h1>Get Elo Ratings</h1>
+      <p>Enter the team number to retrieve Elo ratings.</p>
 
-  <br>
+      <label for="teamnum">Team Number:</label>
+      <input type="text" id="teamnum" name="teamnumber">
+      <input type="submit" value="Get Elo">
+    </form>
 
-  <form action="/matchup" method="get">
-    <label for="team1">Blue Alliance Team 1:</label>
-    <input type="text" id="team1" name="team1">
-    <label for="team2"> Blue Alliance Team 2:</label>
-    <input type="text" id="team2" name="team2">
-    <br>
-    <label for="team3">Red Alliance Team 1:</label>
-    <input type="text" id="team3" name="team3">
-    <label for="team4">Red Alliance Team 2:</label>
-    <input type="text" id="team4" name="team4">
-    <input type="submit" value="Get Matchup">
-  </form>
+
+ <form action="/matchup" method="get" class="combined-form">
+      <h1>Team Matchup</h1>
+      <p>Enter team numbers for the Blue and Red Alliance matchup.</p>
+
+      <div class="alliance-container">
+        <div class="blue-form">
+          <h2>Blue Alliance</h2>
+          <label for="team1">Team 1:</label>
+          <input type="text" id="team1" name="team1" class="blue-input">
+          <label for="team2">Team 2:</label>
+          <input type="text" id="team2" name="team2" class="blue-input">
+        </div>
+
+        <div class="red-form">
+          <h2>Red Alliance</h2>
+          <label for="team3">Team 1:</label>
+          <input type="text" id="team3" name="team3" class="red-input">
+          <label for="team4">Team 2:</label>
+          <input type="text" id="team4" name="team4" class="red-input">
+        </div>
+      </div>
+
+      <input type="submit" value="Get Matchup" class="matchup-button">
+    </form>
+  </main>
+  <footer >
+
+<footer class="footer-content">
+  <p class="footer-text">FTC Elo Ratings</p>
+  <p class="footer-text">Created by FTC 22012</p>
+  <a href="https://ftc22012.wixsite.com/robotics" class="footer-link" target="_blank">Visit our website</a>
+</footer>
+
 </body>
+
 </html>
