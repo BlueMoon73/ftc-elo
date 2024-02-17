@@ -1,32 +1,46 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Orbitron', sans-serif; /* Techy font */
+  background-color: #080808; /* Darker background */
+  color: #fff;
 }
 
 h1 {
   text-align: center;
+  color: #03a9f4; /* Bright blue accent */
 }
 
 form {
   width: 50%;
   margin: auto;
+  background-color: #121212; /* Dark background for form */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  color: #03a9f4; /* Bright blue accent */
 }
 
 input {
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 5px;
+  width: calc(100% - 12px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #03a9f4; /* Bright blue accent */
+  border-radius: 5px;
+  background-color: #121212; /* Dark background for input */
+  color: #fff;
 }
 
 input[type="submit"] {
-  width: 100%;
-  padding: 5px;
-  background-color: #cd0000;
+  background-color: #03a9f4; /* Bright blue accent for buttons */
   color: #fff;
-  border: none;
   cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+input[type="submit"]:hover {
+  background-color: #0288d1; /* Slightly darker blue on hover */
 }
