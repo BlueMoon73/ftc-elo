@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ELO Rating</title>
+  <link rel="stylesheet" href="path-to-your-style.css">
 </head>
+
 <body>
-  <h1>ELO Rating</h1>
-  <p>Team Number: {{ teamnumber }}</p>
-  <p>ELO Rating: {{ rating }}</p>
+  <header>
+    <h1>ELO Rating</h1>
+  </header>
+
+  <main>
+    <p class="elo-details">Team Number: {{ teamnumber }}</p>
+    <p class="elo-details">ELO Rating: {{ rating }}</p>
+  </main>
+
+  <footer class="footer-content">
+    <p class="footer-text">Created by FTC 22012</p>
+    <a href="https://ftc22012.wixsite.com/robotics" class="footer-link" target="_blank">Visit our website</a>
+  </footer>
 </body>
+
 </html>
