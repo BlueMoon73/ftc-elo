@@ -4,24 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ELO Rating</title>
-  <link rel="stylesheet" href="path-to-your-style.css">
+  <title>ELO Rating </title>
+  <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
   <header>
-    <h1>ELO Rating</h1>
+    <h1>FTC Team Elo Ratings</h1>
   </header>
 
   <main>
-    <p class="elo-details">Team Number: {{ teamnumber }}</p>
-    <p class="elo-details">ELO Rating: {{ rating }}</p>
-  </main>
+    <form action="/elo" method="get" class="combined-form">
+      <h2>ELO Rating of Team ( {{ teamnumber }} )</h2>
+      <p class="elo-description">Check the ELO rating for a team.</p>
 
-  <footer class="footer-content">
-    <p class="footer-text">Created by FTC 22012</p>
-    <a href="https://ftc22012.wixsite.com/robotics" class="footer-link" target="_blank">Visit our website</a>
-  </footer>
+      <p class="elo-details">Team Number: {{ teamnumber }}</p>
+      <p class="elo-details">ELO Rating: {{ rating }}</p>
+      <p class="elo-details">** All teams start off at 800</p>
+
+    </form>
+  </main>
+<footer class="footer-content">
+  <p class="footer-text">FTC Elo Ratings</p>
+  <p class="footer-text">Created by FTC 22012</p>
+  <a href="https://ftc22012.wixsite.com/robotics" class="footer-link" target="_blank">Visit our website</a>
+</footer>
 </body>
 
 </html>

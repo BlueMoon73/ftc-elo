@@ -99,7 +99,7 @@ footer {
 
 .combined-form {
   width: 100%;
-  margin: auto;
+  margin: 20px auto;
   background-color: var(--form-bg-color);
   padding: 20px;
   border-radius: 10px;
@@ -198,4 +198,20 @@ footer {
 
 .footer-link:hover {
   text-decoration: underline;
+}
+
+.elo-description {
+  color: var(--white-color);
+  margin-bottom: 20px;
+}
+
+.elo-details {
+  color: var(--white-color);
+  font-size: 17px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: var(--main-accent);
 }
