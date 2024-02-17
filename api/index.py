@@ -16,24 +16,8 @@ def elo():
     if teamnumber is None:
         return "teamnumber parameter is missing", 400
     rating = main.getAvgElo(int(teamnumber))
-    return str(int(teamnumber)) + " rating: " + str(rating)
-
-
-@app.route('/elo/<teamnum>')
-def elo2(teamnum):
-    rating = main.getAvgElo(int(teamnum))
-    return str(int(teamnum)) + " rating: " + str(rating)
-
-
-@app.route('/matchup/<team1>&<team2>/<team3>&<team4>')
-def matchup(team1, team2, team3, team4):
-    predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
-
-    ret = str(team1) + " and " + str(team2) + " (" + str(round(predictions[-2] * 100, 2)) + "%)"
-    ret += " vs. "
-    ret += str(team3) + " and " + str(team4) + " (" + str(round(predictions[-1] * 100, 2)) + "%)"
-    return ret
-
+    return render_template('elo.html', teamnumber=teamnumber, rating=rating)
+    # return str(int(teamnumber)) + " rating: " + str(rating)
 
 @app.route('/matchup', methods=['GET'])
 def matchup2():
