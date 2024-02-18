@@ -14,6 +14,7 @@ def home():
 def elo():
 
     teamnumber = request.args.get('teamnumber')
+    teamnumber = teamnumber.replace(" ", "")
     if teamnumber is None:
         return "teamnumber parameter is missing", 400
     if teamnumber.isnumeric():
@@ -31,8 +32,12 @@ def matchup():
     team2 = request.args.get('team2')
     team3 = request.args.get('team3')
     team4 = request.args.get('team4')
-    if team1 is None or team3 is None:
-        return "teamnumber parameter is missing", 400
+    team1 = team1.replace(" ", "")
+    team2 = team2.replace(" ", "")
+    team3 = team3.replace(" ", "")
+    team4 = team4.replace(" ", "")
+
+
     if team2 is "":
         team2 = team1
     if team4 is "":
