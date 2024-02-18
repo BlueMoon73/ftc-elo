@@ -265,10 +265,10 @@ header a:hover {
  .blue-pred h2 { color: var(--main-accent)}
  .red-pred h2 { color: var(--red-color)}
 
-  .blue-pred p { color: var(--white-color); font-size: 24px}
- .red-pred p { color: var(--white-color); font-size: 24px}
-  .blue-pred h3 { color: var(--main-accent)}
- .red-pred h3 { color: var(--red-color)}
+  .blue-pred p { color: var(--white-color); font-size: 28px}
+ .red-pred p { color: var(--white-color); font-size: 28px}
+  .blue-pred h3 { color: var(--main-accent); font-style: italic; font-size: 24px}
+ .red-pred h3 { color: var(--red-color); font-style: italic; font-size: 24px}
 
 
 
