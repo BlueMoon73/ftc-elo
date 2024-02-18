@@ -35,4 +35,4 @@ def matchup():
 
     predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
 
-    return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100), redPred = round(predictions[-1] * 100) )
+    return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2))
