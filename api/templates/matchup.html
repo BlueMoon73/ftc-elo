@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ELO Rating</title>
+  <link rel="stylesheet" href="../../style.css">
 </head>
+
 <body>
-  <h1>ELO Rating</h1>
-  <p>{{ team1 }} and {{ team2 }} ({{ predictions[-2] * 100 }}%) vs. {{ team3 }} and {{ team4 }} ({{ predictions[-1] * 100 }}%)</p>
+<header>
+      <a href="https://ftcelo.vercel.app">
+
+    <h1>FTC Team Elo Ratings</h1>
+              </a>
+  </header>
+
+  <main>
+    <section class="blue-pred">
+      <h2>Blue Alliance</h2>
+      <h3>{{ team1 }} & {{ team2 }}  </h3>
+        <p class="blue-details">
+          <span class="blue-circle">
+            <span>{{ predictions[-2] * 100 }}</span>
+        </span>
+        </p>
+    </section>
+
+    <section class="red-pred">
+      <h2>Red Alliance</h2>
+      <h3 >{{ team3 }} & {{ team4 }}  </h3>
+
+           <p class="red-details">
+          <span class="red-circle">
+            <span>{{ predictions[-1] * 100 }}</span>
+        </span>
+        </p>
+
+    </section>
+  </main>
+
+<footer class="footer-content">
+  <p class="footer-text">FTC Elo Ratings</p>
+  <p class="footer-text">Created by FTC 22012</p>
+  <a href="https://ftc22012.wixsite.com/robotics" class="footer-link" target="_blank">Visit our website</a>
+</footer>
 </body>
+
 </html>
