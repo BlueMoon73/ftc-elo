@@ -15,12 +15,16 @@
 
   <main>
     <form action="/elo" method="get" class="combined-form">
-      <h2>ELO Rating of Team ( {{ teamnumber }} )</h2>
+      <h2>ELO Rating of Team ({{ teamnumber }})</h2>
       <p class="elo-description">Check the ELO rating for a team.</p>
 
-      <p class="elo-details">Team Number: {{ teamnumber }}</p>
-      <p class="elo-details">ELO Rating: {{ rating }}</p>
-      <p class="elo-details">** All teams start off at 800</p>
+      <p class="elo-details">{{ teamnumber }}</p>
+      <p class="elo-details">ELO Rating:
+          <span class="circle">
+            <span>{{ rating }}</span>
+        </span>
+        </p>
+      <p class="">** All teams start off at 800</p>
 
     </form>
   </main>

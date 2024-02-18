@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  --background-color: #080808;
+  --form-bg-color: #121212;
+  --main-accent: #03a9f4;
+  --button-bg-color: #09314b;
+  --red-color: #e78282;
+  --white-color: #ccc;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background-color);
+  color: var(--white-color);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background-color: var(--form-bg-color);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: var(--main-accent);
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+}
+
+form, .combined-form {
+  width: 80%;
+  margin: auto;
+  background-color: var(--form-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: var(--main-accent);
+}
+
+p, .elo-description, .elo-details, .footer-text {
+  color: var(--white-color);
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--main-accent);
+}
+
+input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--main-accent);
+  border-radius: 5px;
+  background-color: var(--form-bg-color);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type="submit"] {
+  width: calc(100% - 2px);
+  background-color: var(--main-accent);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--button-bg-color);
+}
+
+footer {
+  text-align: center;
+  background-color: var(--form-bg-color);
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.footer-link {
+  color: var(--main-accent);
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.alliance-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.blue-form,
+.red-form {
+  width: 45%;
+  margin: 20px 2.5%;
+  text-align: center;
+}
+
+.matchup-button {
+  width: 80%;
+  background-color: var(--main-accent);
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+}
+
+.matchup-button:hover {
+  background-color: var(--main-accent);
+}
+
+.blue-input {
+  border-color: var(--main-accent);
+}
+
+.red-input {
+  border-color: var(--red-color);
+}

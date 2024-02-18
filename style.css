@@ -206,12 +206,54 @@ footer {
 }
 
 .elo-details {
-  color: var(--white-color);
-  font-size: 17px;
-  text-align: left;
+  color: var(--main-accent);
+  font-size: 24px; /* Increase font size for better visibility */
+  font-weight: bold; /* Make the text bold */
+  text-align: center;
   margin-bottom: 20px;
+
+}
+
+.elo-rating-circle {
+  width: 50px; /* Set the width of the circle */
+  height: 50px; /* Set the height of the circle */
+  background-color: var(--main-accent);
+  color: var(--background-color);
+  border-radius: 50%; /* Make it a circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto; /* Adjust margin as needed */
+}
+
+.elo-rating-circle p {
+  margin: 0; /* Remove default margin inside the circle */
+  font-size: 18px; /* Set the font size inside the circle */
 }
 
 h2 {
   color: var(--main-accent);
 }
+.combined-form h2 {
+  font-size: 30px;
+}
+
+.circle {
+            display: inline-block;
+            line-height: 0px;
+            /*border-radius: 50%;*/
+            /*font-size: 32px;*/
+ border: double 4px transparent;
+  border-radius: 80px;
+  background-image: linear-gradient(var(--form-bg-color), var(--form-bg-color)), radial-gradient(circle at top center, var(--main-accent),var(--red-color));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+        }
+
+        .circle span {
+            display: inline-block;
+            padding-top: 50%;
+            padding-bottom: 50%;
+            margin-left: 8px;
+            margin-right: 8px;
+        }

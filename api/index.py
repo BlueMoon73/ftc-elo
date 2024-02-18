@@ -16,7 +16,7 @@ def elo():
     if teamnumber is None:
         return "teamnumber parameter is missing", 400
     rating = main.getAvgElo(int(teamnumber))
-    return render_template('elo.html', teamnumber=teamnumber, rating=rating)
+    return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2))
     # return str(int(teamnumber)) + " rating: " + str(rating)
 
 @app.route('/matchup', methods=['GET'])
