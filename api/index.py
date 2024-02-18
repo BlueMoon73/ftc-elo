@@ -19,8 +19,9 @@ def elo():
     return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2))
     # return str(int(teamnumber)) + " rating: " + str(rating)
 
+
 @app.route('/matchup', methods=['GET'])
-def matchup2():
+def matchup():
     team1 = request.args.get('team1')
     team2 = request.args.get('team2')
     team3 = request.args.get('team3')
@@ -34,7 +35,4 @@ def matchup2():
 
     predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
 
-    ret = str(team1) + " and " + str(team2) + " (" + str(round(predictions[-2] * 100, 2)) + "%)"
-    ret += " vs. "
-    ret += str(team3) + " and " + str(team4) + " (" + str(round(predictions[-1] * 100, 2)) + "%)"
-    return ret
+    return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, predictions=predictions)
