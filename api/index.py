@@ -33,12 +33,13 @@ def matchup():
     team4 = request.args.get('team4')
     if team1 is None or team3 is None:
         return "teamnumber parameter is missing", 400
-    if team2 is None:
+    if team2 is "":
         team2 = team1
-        retyu
-    if team4 is None:
+    if team4 is "":
         team4 = team3
 
-    predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
-
-    return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2))
+    if team1.isnumeric() and team2.isnumeric() and team3.isnumeric() and team4.isnumeric():
+        predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
+        return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2))
+    else:
+        return render_template('error.html')
