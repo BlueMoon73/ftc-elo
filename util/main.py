@@ -39,13 +39,12 @@ eventDateTemplate = Template("""
     end
   }
 }
-"""
-                             )
+""")
 
-teamNumber = 22012
-
-eventList = teamEventListTemplate.safe_substitute(teamNum=22012)
-
+teamNameTemplate = Template ("""{ 
+ teamByNumber(number: 22012) {name}
+}
+""")
 
 def fetchAPI(body):
     response = requests.post(url=url, json={"query": body})
@@ -237,7 +236,10 @@ def predictMatches (team1, team2, team3, team4):
               teamList[getPlayerIndex(teamList, team3)],
               teamList[getPlayerIndex(teamList, team4)])
 
-
+def getTeamName(teamNumber):
+    body = teamNameTemplate.safe_substitute(teamNum=teamNumber)
+    jsonResponse = fetchAPI(body)
+    return (jsonResponse["data"]["teamByNumber"]["name"])
 
 
 def getAvgElo(teamNum, iterations=1):

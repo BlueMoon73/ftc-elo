@@ -45,6 +45,14 @@ def matchup():
 
     if team1.isnumeric() and team2.isnumeric() and team3.isnumeric() and team4.isnumeric():
         predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
-        return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2))
+        name1= main.getTeamName(team1)
+        name2= main.getTeamName(team2)
+        name3= main.getTeamName(team3)
+        name4= main.getTeamName(team4)
+        return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2),
+                               team1Name = name1,
+                               team2Name = name2,
+                               team3Name = name3,
+                               team4Name = name4)
     else:
         return render_template('error.html')
