@@ -174,7 +174,7 @@ def calcEloFromAllEvents(teamNum):
     print("Events Competed At:", eventList)
     sortedEventList = sortEvents(eventList)
     #
-    matchStatsList, teamSet = getAllTeamsFromEvents(sortedEventList)
+    matchStatsList, teamSet = getAllTeamsFromEvents(eventList)
 
     teamList = initialRatings(teamSet)
 
