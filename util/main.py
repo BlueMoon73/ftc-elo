@@ -56,16 +56,14 @@ def fetchAPI(body):
 
 
 def doesTeamExist(teamNum):
-    if teamNum.isnumeric():
-        body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
-        jsonResponse = fetchAPI(body)
+    body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
+    jsonResponse = fetchAPI(body)
 
-        if jsonResponse["data"]["teamByNumber"]:
-            return bool(jsonResponse["data"]["teamByNumber"]["matches"])
-        else:
-            return False
+    if jsonResponse["data"]["teamByNumber"]:
+        return bool(jsonResponse["data"]["teamByNumber"]["matches"])
     else:
         return False
+
 
 def getEvents(teamNum):
     body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
