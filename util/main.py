@@ -54,7 +54,11 @@ def fetchAPI(body):
         jsonResponse = "null"
     return jsonResponse
 
+def doesTeamExist(teamNum):
+    body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
+    jsonResponse = fetchAPI(body)
 
+    return bool(jsonResponse["data"]["teamByNumber"]["matches"])
 def getEvents(teamNum):
     body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
     jsonResponse = fetchAPI(body)
@@ -170,7 +174,7 @@ def calcEloFromAllEvents(teamNum):
     print("Events Competed At:", eventList)
     sortedEventList = sortEvents(eventList)
     #
-    matchStatsList, teamSet = getAllTeamsFromEvents(eventList)
+    matchStatsList, teamSet = getAllTeamsFromEvents(sortedEventList)
 
     teamList = initialRatings(teamSet)
 

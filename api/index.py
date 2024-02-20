@@ -17,10 +17,13 @@ def elo():
     teamnumber = teamnumber.replace(" ", "")
     if teamnumber is None:
         return "teamnumber parameter is missing", 400
-    if teamnumber.isnumeric():
-        rating = main.getAvgElo(int(teamnumber))
-        name = main.getTeamName(int(teamnumber))
-        return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2), teamName = name )
+    if teamnumber.isnumeric() :
+        if main.doesTeamExist(teamnumber):
+            rating = main.getAvgElo(int(teamnumber))
+            name = main.getTeamName(int(teamnumber))
+            return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2), teamName = name )
+        else:
+            return  render_template('error2.html')
     else:
         return render_template('error.html')
     # return str(int(teamnumber)) + " rating: " + str(rating)
@@ -50,15 +53,19 @@ def matchup():
         team2 = int(team2)
         team3 = int(team3)
         team4 = int(team4)
-        predictions = main.predictMatches(team1, team2, team3, team4)
-        name1= main.getTeamName(team1)
-        name2= main.getTeamName(team2)
-        name3= main.getTeamName(team3)
-        name4= main.getTeamName(team4)
-        return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2),
-                               team1Name = name1,
-                               team2Name = name2,
-                               team3Name = name3,
-                               team4Name = name4)
+        if main.doesTeamExist(team1) and main.doesTeamExist(team2) and  main.doesTeamExist(team3) and  main.doesTeamExist(team4):
+            predictions = main.predictMatches(team1, team2, team3, team4)
+            name1= main.getTeamName(team1)
+            name2= main.getTeamName(team2)
+            name3= main.getTeamName(team3)
+            name4= main.getTeamName(team4)
+            return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2),
+                                   team1Name = name1,
+                                   team2Name = name2,
+                                   team3Name = name3,
+                                   team4Name = name4)
+        else:
+            return render_template('error2.html')
+
     else:
         return render_template('error.html')
