@@ -38,6 +38,10 @@ def matchup():
     team3 = team3.replace(" ", "")
     team4 = team4.replace(" ", "")
 
+    team1 = int(team1)
+    team2 = int(team2)
+    team3 = int(team3)
+    team4 = int(team4)
 
     if team2 is "":
         team2 = team1
@@ -45,7 +49,7 @@ def matchup():
         team4 = team3
 
     if team1.isnumeric() and team2.isnumeric() and team3.isnumeric() and team4.isnumeric():
-        predictions = main.predictMatches(int(team1), int(team2), int(team3), int(team4))
+        predictions = main.predictMatches(team1, team2, team3, team4)
         name1= main.getTeamName(team1)
         name2= main.getTeamName(team2)
         name3= main.getTeamName(team3)
