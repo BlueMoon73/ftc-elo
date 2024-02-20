@@ -42,7 +42,7 @@ eventDateTemplate = Template("""
 """)
 
 teamNameTemplate = Template ("""{ 
- teamByNumber(number: 22012) {name}
+ teamByNumber(number: $teamNum) {name}
 }
 """)
 
