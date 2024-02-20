@@ -42,9 +42,9 @@ def matchup():
     team4 = team4.replace(" ", "")
 
 
-    if team2 is "":
+    if team2 ==  "":
         team2 = team1
-    if team4 is "":
+    if team4 ==  "":
         team4 = team3
 
     if team1.isnumeric() and team2.isnumeric() and team3.isnumeric() and team4.isnumeric():
