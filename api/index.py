@@ -18,7 +18,7 @@ def elo():
     if teamnumber is None:
         return "teamnumber parameter is missing", 400
     if teamnumber.isnumeric() :
-        if main.doesTeamExist(teamnumber):
+        if main.doesTeamExist(int(teamnumber)):
             rating = main.getAvgElo(int(teamnumber))
             name = main.getTeamName(int(teamnumber))
             return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2), teamName = name )
