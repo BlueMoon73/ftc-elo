@@ -55,10 +55,13 @@ def matchup():
         name2= main.getTeamName(team2)
         name3= main.getTeamName(team3)
         name4= main.getTeamName(team4)
-        return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2),
-                               team1Name = name1,
-                               team2Name = name2,
-                               team3Name = name3,
-                               team4Name = name4)
+        if not predictions is None:
+            return render_template('matchup.html', team1=team1, team2=team2, team3=team3, team4=team4, bluePred = round(predictions[-2] * 100, 2), redPred = round(predictions[-1] * 100, 2),
+                                   team1Name = name1,
+                                   team2Name = name2,
+                                   team3Name = name3,
+                                   team4Name = name4)
+        else:
+            return
     else:
         return render_template('error.html')

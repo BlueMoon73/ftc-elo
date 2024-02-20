@@ -168,17 +168,22 @@ def getAllElos(teamList):
 def calcEloFromAllEvents(teamNum):
     eventList = getEvents(teamNum)
     print("Events Competed At:", eventList)
-    sortedEventList = sortEvents(eventList)
-    #
-    matchStatsList, teamSet = getAllTeamsFromEvents(eventList)
 
-    teamList = initialRatings(teamSet)
+    if not not eventList:
 
-    for matchStats in matchStatsList:
-        teamsInMatches = findMatches(matchStats)
-        simulateMatches(teamsInMatches, teamList, matchStats)
-        # print(matchStatsList.index(matchStats), teamRanking(teamNum, teamList, True))
-    return teamList
+        sortedEventList = sortEvents(eventList)
+        #
+        matchStatsList, teamSet = getAllTeamsFromEvents(sortedEventList)
+
+        teamList = initialRatings(teamSet)
+
+        for matchStats in matchStatsList:
+            teamsInMatches = findMatches(matchStats)
+            simulateMatches(teamsInMatches, teamList, matchStats)
+            # print(matchStatsList.index(matchStats), teamRanking(teamNum, teamList, True))
+        return teamList
+    else:
+        return None
 
 
 def teamRanking(teamName, teamList, shouldPrint):
@@ -210,31 +215,34 @@ def predictMatches (team1, team2, team3, team4):
     team3List = calcEloFromAllEvents(team3)
     team4List = calcEloFromAllEvents(team4)
     # Creating a copy
-    teamList = list(team1List)
-    print(len(teamList))
+    if team1List is None or team2List is None or team3List is None or team4List is None:
+        return None
+    else:
+        teamList = list(team1List)
+        print(len(teamList))
 
-    # Using extend() method
-    teamNumbers = [t.teamNumber for t in teamList]
-    for y in team2List:
-        if y.teamNumber not in teamNumbers:
-            teamList.extend([y])
-            teamNumbers.append(y.teamNumber)
+        # Using extend() method
+        teamNumbers = [t.teamNumber for t in teamList]
+        for y in team2List:
+            if y.teamNumber not in teamNumbers:
+                teamList.extend([y])
+                teamNumbers.append(y.teamNumber)
 
-    for y in team3List:
-        if y.teamNumber not in teamNumbers:
-            teamList.extend([y])
-            teamNumbers.append(y.teamNumber)
+        for y in team3List:
+            if y.teamNumber not in teamNumbers:
+                teamList.extend([y])
+                teamNumbers.append(y.teamNumber)
 
-    for y in team4List:
-        if y.teamNumber not in teamNumbers:
-            teamList.extend([y])
-            teamNumbers.append(y.teamNumber)
+        for y in team4List:
+            if y.teamNumber not in teamNumbers:
+                teamList.extend([y])
+                teamNumbers.append(y.teamNumber)
 
-    return elo.predictMatch(
-              teamList[getPlayerIndex(teamList, team1)],
-              teamList[getPlayerIndex(teamList, team2)],
-              teamList[getPlayerIndex(teamList, team3)],
-              teamList[getPlayerIndex(teamList, team4)])
+        return elo.predictMatch(
+                  teamList[getPlayerIndex(teamList, team1)],
+                  teamList[getPlayerIndex(teamList, team2)],
+                  teamList[getPlayerIndex(teamList, team3)],
+                  teamList[getPlayerIndex(teamList, team4)])
 
 def getTeamName(teamNumber):
     body = teamNameTemplate.safe_substitute(teamNum=teamNumber)
