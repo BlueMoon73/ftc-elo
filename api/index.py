@@ -20,7 +20,10 @@ def elo():
     if teamnumber.isnumeric():
         rating = main.getAvgElo(int(teamnumber))
         name = main.getTeamName(int(teamnumber))
-        return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2), teamName = name )
+        if rating is None:
+            return render_template('error2.html')
+        else:
+            return render_template('elo.html', teamnumber=teamnumber, rating=round(rating,2), teamName = name )
     else:
         return render_template('error.html')
     # return str(int(teamnumber)) + " rating: " + str(rating)
@@ -62,6 +65,6 @@ def matchup():
                                    team3Name = name3,
                                    team4Name = name4)
         else:
-            return
+            return render_template('error2.html')
     else:
         return render_template('error.html')

@@ -254,8 +254,11 @@ def getAvgElo(teamNum, iterations=1):
   avgElo = 0;
   for i in range(iterations):
     updatedTeamSet = calcEloFromAllEvents(teamNum)
-    teamElo, rankedTeamDict = teamRanking(teamNum, updatedTeamSet, False)
-    avgElo += teamElo
+    if updatedTeamSet is None:
+        return None
+    else:
+        teamElo, rankedTeamDict = teamRanking(teamNum, updatedTeamSet, False)
+        avgElo += teamElo
   avgElo /= iterations
 
   return avgElo
