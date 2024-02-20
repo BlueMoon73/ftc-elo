@@ -15,9 +15,12 @@ def elo():
 
     teamnumber = request.args.get('teamnumber')
     teamnumber = teamnumber.replace(" ", "")
+
     if teamnumber is None:
         return "teamnumber parameter is missing", 400
     if teamnumber.isnumeric() :
+        return "woah"
+
         if main.doesTeamExist(int(teamnumber)):
             rating = main.getAvgElo(int(teamnumber))
             name = main.getTeamName(int(teamnumber))
