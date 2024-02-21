@@ -96,7 +96,10 @@ def getAllTeamsFromEvents(eventList):
         jsonResponseList.append(jsonResponse)
         for i in range(numMatches):
             for j in range(4):
-                teamSet.add(jsonResponse["data"]["eventByCode"]["matches"][i]["teams"][j]["teamNumber"])
+                try:
+                    teamSet.add(jsonResponse["data"]["eventByCode"]["matches"][i]["teams"][j]["teamNumber"])
+                except:
+                    pass
     return jsonResponseList, teamSet
 
 
@@ -141,7 +144,10 @@ def findMatches(matchList):
     for i in range(numMatches):
         currentMatch = list()
         for j in range(4):
-            currentMatch.append(matchList["data"]["eventByCode"]["matches"][i]["teams"][j]["teamNumber"])
+            try:
+                currentMatch.append(matchList["data"]["eventByCode"]["matches"][i]["teams"][j]["teamNumber"])
+            except:
+                pass
         matchArray.append(currentMatch)
     return matchArray
 
@@ -167,6 +173,8 @@ def simulateMatches(teamsInMatches, teamList, matchStats):
                     "totalPointsNp"]
             )
         except TypeError:
+            pass
+        except IndexError:
             pass
 
 

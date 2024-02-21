@@ -17,7 +17,7 @@ def elo():
     teamnumber = teamnumber.replace(" ", "")
 
     if teamnumber is None:
-        return "teamnumber parameter is missing", 400
+        return render_template('error.html')
     if teamnumber.isnumeric() :
 
         if main.doesTeamExist(int(teamnumber)):
