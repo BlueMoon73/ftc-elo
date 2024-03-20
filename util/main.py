@@ -1,4 +1,6 @@
 # imports
+import math
+
 import requests
 import json
 from string import Template
@@ -45,6 +47,12 @@ teamNameTemplate = Template ("""{
  teamByNumber(number: $teamNum) {name}
 }
 """)
+
+worldRecordRegion = """ {
+    tradWorldRecord(season:2023){
+    eventCode
+  }
+}"""
 
 def fetchAPI(body):
     response = requests.post(url=url, json={"query": body})
@@ -188,7 +196,6 @@ def calcEloFromAllEvents(teamNum):
     print("Events Competed At:", eventList)
     sortedEventList = sortEvents(eventList)
     del sortedEventList[-1]
-
     matchStatsList, teamSet = getAllTeamsFromEvents(sortedEventList)
 
     teamList = initialRatings(teamSet)
@@ -196,8 +203,8 @@ def calcEloFromAllEvents(teamNum):
     for matchStats in matchStatsList:
         teamsInMatches = findMatches(matchStats)
         simulateMatches(teamsInMatches, teamList, matchStats)
-        # print(matchStatsList.index(matchStats), teamRanking(teamNum, teamList, True))
-    return teamList
+
+    return eventList, teamList
 
 
 def teamRanking(teamName, teamList, shouldPrint):
@@ -261,13 +268,52 @@ def getTeamName(teamNumber):
     return (jsonResponse["data"]["teamByNumber"]["name"])
 
 
-def getAvgElo(teamNum, iterations=1):
-  avgElo = 0;
-  for i in range(iterations):
-    updatedTeamSet = calcEloFromAllEvents(teamNum)
-    teamElo, rankedTeamDict = teamRanking(teamNum, updatedTeamSet, False)
-    avgElo += teamElo
-  avgElo /= iterations
+def findWorldRecordRegion():
+    jsonResponse = fetchAPI(worldRecordRegion)
+    return jsonResponse["data"]["tradWorldRecord"]["eventCode"]
 
-  return avgElo
+def avgOfList(lst):
+    return sum(lst) / len(lst)
+def normalize(elo, eventList):
+    eventAvgScores = []
+    for event in eventList:
+        avgScore = findAvgScoreFromEvent(event)
+        eventAvgScores.append(avgScore)
+    avgEventsScore = avgOfList(eventAvgScores)
+    avgWorldRecordRegionScore = findAvgScoreFromEvent(findWorldRecordRegion())
+    return elo * normalizeFunction(avgWorldRecordRegionScore, avgEventsScore)
+
+def normalizeFunction(avgHighscore, avgRegionScore):
+    return math.log((-(avgHighscore - avgRegionScore) / avgHighscore) + 1, 10) + 1
+def findAvgScoreFromEvent(eventCode):
+    matchStats = getAllTeamsFromEvent(eventCode)
+    allWinningScores = []
+
+    for match in matchStats[0]["data"]["eventByCode"]["matches"]:
+        try:
+            redScore = match["scores"]["red"]["totalPointsNp"]
+            blueScore = match["scores"]["blue"]["totalPointsNp"]
+            if redScore >= blueScore:
+                allWinningScores.append(redScore)
+            else:
+                allWinningScores.append(blueScore)
+        except:
+            pass
+    avgScore = avgOfList(allWinningScores)
+    return (avgScore)
+
+
+def getAvgElo(teamNum, iterations=1):
+    avgElo = 0;
+
+    for i in range(iterations):
+        eventList, updatedTeamSet = calcEloFromAllEvents(teamNum)
+        teamElo, rankedTeamDict = teamRanking(teamNum, updatedTeamSet, False)
+        avgElo += teamElo
+
+    avgElo /= iterations
+    avgElo = normalize(avgElo, eventList)
+
+    return avgElo
+
 
