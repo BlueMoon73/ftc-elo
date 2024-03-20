@@ -284,7 +284,7 @@ def normalize(elo, eventList):
     return elo * normalizeFunction(avgWorldRecordRegionScore, avgEventsScore)
 
 def normalizeFunction(avgHighscore, avgRegionScore):
-    return 0.715 * math.log((-(avgHighscore - avgRegionScore) / avgHighscore) + 1, 10) + 1
+    return 0.515 * math.log((-(avgHighscore - avgRegionScore) / avgHighscore) + 1, 10) + 1
 def findAvgScoreFromEvent(eventCode):
     matchStats = getAllTeamsFromEvent(eventCode)
     allWinningScores = []
