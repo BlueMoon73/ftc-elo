@@ -231,10 +231,10 @@ def printDict(dict):
 
 
 def predictMatches (team1, team2, team3, team4):
-    team1List = calcEloFromAllEvents(team1)
-    team2List = calcEloFromAllEvents(team2)
-    team3List = calcEloFromAllEvents(team3)
-    team4List = calcEloFromAllEvents(team4)
+    _, team1List = calcEloFromAllEvents(team1)
+    _, team2List = calcEloFromAllEvents(team2)
+    _, team3List = calcEloFromAllEvents(team3)
+    _, team4List = calcEloFromAllEvents(team4)
     # Creating a copy
     teamList = list(team1List)
     print(len(teamList))
