@@ -5,6 +5,7 @@ import requests
 import json
 from string import Template
 from util import elo
+from util import queries
 from datetime import datetime
 
 
@@ -12,47 +13,6 @@ print(elo.ratingDiff)
 
 url = "https://api.ftcscout.org/graphql"
 
-teamEventListTemplate = Template("""
-{
-    teamByNumber(number: $teamNumber){
-      matches (season: 2023){
-        eventCode
-      }
-  }
-} """)
-
-eventMatchesTemplate = Template(""" {
-  eventByCode(season:2023, code:"$code"){
-    matches { 
-      teams {teamNumber}
-      scores {
-        ... on MatchScores2023	{ 
-          red {totalPointsNp}
-          blue {totalPointsNp}
-        }
-      }
-    }
-  }
-}""")
-
-eventDateTemplate = Template(""" 
-{
-  eventByCode(season:2023, code:"$code"){
-    end
-  }
-}
-""")
-
-teamNameTemplate = Template ("""{ 
- teamByNumber(number: $teamNum) {name}
-}
-""")
-
-worldRecordRegion = """ {
-    tradWorldRecord(season:2023){
-    eventCode
-  }
-}"""
 
 def fetchAPI(body):
     response = requests.post(url=url, json={"query": body})
@@ -64,7 +24,7 @@ def fetchAPI(body):
 
 
 def doesTeamExist(teamNum):
-    body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
+    body = queries.teamEventListTemplate.safe_substitute(teamNumber=teamNum)
     jsonResponse = fetchAPI(body)
 
     if jsonResponse["data"]["teamByNumber"]:
@@ -74,7 +34,7 @@ def doesTeamExist(teamNum):
 
 
 def getEvents(teamNum):
-    body = teamEventListTemplate.safe_substitute(teamNumber=teamNum)
+    body = queries.teamEventListTemplate.safe_substitute(teamNumber=teamNum)
     jsonResponse = fetchAPI(body)
     numMatches = len(jsonResponse["data"]["teamByNumber"]["matches"])
     eventSet = set()
@@ -84,7 +44,7 @@ def getEvents(teamNum):
 
 
 def getAllTeamsFromEvent(eventCode):
-    body = eventMatchesTemplate.safe_substitute(code=eventCode)
+    body = queries.eventMatchesTemplate.safe_substitute(code=eventCode)
     jsonResponse = fetchAPI(body)
     numMatches = len(jsonResponse["data"]["eventByCode"]["matches"])
     teamSet = set()
@@ -98,7 +58,7 @@ def getAllTeamsFromEvents(eventList):
     teamSet = set()
     jsonResponseList = list()
     for event in eventList:
-        body = eventMatchesTemplate.safe_substitute(code=event)
+        body = queries.eventMatchesTemplate.safe_substitute(code=event)
         jsonResponse = fetchAPI(body)
         numMatches = len(jsonResponse["data"]["eventByCode"]["matches"])
         jsonResponseList.append(jsonResponse)
@@ -112,7 +72,7 @@ def getAllTeamsFromEvents(eventList):
 
 
 def getEventDate(eventCode):
-    eventDateRequest = eventDateTemplate.safe_substitute(code=eventCode)
+    eventDateRequest = queries.eventDateTemplate.safe_substitute(code=eventCode)
 
     dateStr = fetchAPI(eventDateRequest)["data"]["eventByCode"]["end"]
     dateFormat = "%Y-%m-%d"
@@ -263,15 +223,13 @@ def predictMatches (team1, team2, team3, team4):
               teamList[getPlayerIndex(teamList, team4)])
 
 def getTeamName(teamNumber):
-    body = teamNameTemplate.safe_substitute(teamNum=teamNumber)
+    body = queries.teamNameTemplate.safe_substitute(teamNum=teamNumber)
     jsonResponse = fetchAPI(body)
     return (jsonResponse["data"]["teamByNumber"]["name"])
 
-
 def findWorldRecordRegion():
-    jsonResponse = fetchAPI(worldRecordRegion)
+    jsonResponse = fetchAPI(queries.worldRecordRegion)
     return jsonResponse["data"]["tradWorldRecord"]["eventCode"]
-
 def avgOfList(lst):
     return sum(lst) / len(lst)
 def normalize(elo, eventList):
@@ -281,7 +239,7 @@ def normalize(elo, eventList):
         eventAvgScores.append(avgScore)
     avgEventsScore = avgOfList(eventAvgScores)
     avgWorldRecordRegionScore = findAvgScoreFromEvent(findWorldRecordRegion())
-    return elo * normalizeFunction(avgWorldRecordRegionScore, avgEventsScore)
+    return elo * normalizeFunction(avgWorldRecordRegionScore, avgEventsScore) * 1.5
 
 def normalizeFunction(avgHighscore, avgRegionScore):
     return 0.51 * math.log((-(avgHighscore - avgRegionScore) / avgHighscore) + 1, 10) + 1
@@ -301,7 +259,6 @@ def findAvgScoreFromEvent(eventCode):
             pass
     avgScore = avgOfList(allWinningScores)
     return (avgScore)
-
 
 def getAvgElo(teamNum, iterations=1):
     avgElo = 0;
