@@ -1,28 +1,67 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# FTC Elo Rating System  
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-blue)](https://ftcelo.vercel.app/)  
+[![Creator Portfolio](https://img.shields.io/badge/Creator-Monish%20Saravana-orange)](https://monishsaravana.com/)
 
-# Flask + Vercel
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+https://ftcelo.vercel.app/
 
-## Demo
+## Overview  
+A chess-inspired Elo rating system for FTC teams using match data from the FTC Scout API. Predict alliance strengths and compare team performance across events.
 
-https://flask-python-template.vercel.app/
+---
 
-## How it Works
+### Features  
+1. **Team Elo Lookup**  
+   Get current Elo ratings for any FTC team:  
+   ```
+   Team Number: 22012  
+   Elo Rating: 1487  
+   ```
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
+2. **Match Predictor**  
+   Compare Blue vs Red alliances:  
+   ```
+   Blue Alliance: 22012 + 18165  
+   Red Alliance: 12345 + 67890  
+   Predicted Winner: Blue (68% chance)  
+   ```
 
-## Running Locally
+3. **Event Normalization**  
+   Adjusts ratings based on regional competition intensity using world record event benchmarks.
 
-```bash
-npm i -g vercel
-vercel dev
-```
+---
 
-Your Flask application is now available at `http://localhost:3000`.
+### Technologies Used  
+- Python (Elo calculation engine)  
+- HTML/CSS (Frontend interface)  
+- FTC Scout API (Match data)  
+- Vercel (Hosting)  
+- Flash (Server-side rendering)  
 
-## One-Click Deploy
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+---
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+### Disclaimer ⚠️  
+This is an **unofficial** tool not affiliated with FIRST Tech Challenge. Ratings are algorithmic estimates only - use at your own discretion.
+
+---
+
+### Methodology  
+1. Pulls match results from [FTC Scout](https://api.ftcscout.org/)  
+2. Applies modified chess Elo formulas:  
+   ```python
+   # Point difference weighting
+   math.pow(math.log10(1 + abs(teamScore/2 - opposingScore/2)), 2)
+   ```
+3. Normalizes for event strength using:  
+   ```python
+   0.51 * math.log((-(highscore - region_score)/highscore) + 1, 10) + 1
+   ```
+
+---
+
+### Creator  
+Monish Saravana (FTC Team 22012)  
+[Portfolio](https://monishsaravana.com/) | [FTC Events](https://events.ftcscout.org/team/22012)  
+
+---
